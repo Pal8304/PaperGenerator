@@ -9,3 +9,7 @@ Design and develop a question paper formation tool using an efficient data struc
 ### **Constraints:**
 - No question(s) must be repeated in the generated paper.
 - There must be less similarity between multiple variants of papers generated.
+
+## Solution proposed by "LashPa"
+
+- Usage of priority queue to store the number of times the questions have appeared in previous papers.
