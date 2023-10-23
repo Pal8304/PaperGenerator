@@ -1,0 +1,20 @@
+Minimum Window Substring: Given two strings, S and T, find the minimum window in S which will contain all the characters in T. This problem is often referred to as the 'Minimum Window Substring' problem and is a classic array manipulation and string manipulation problem.
+
+------
+
+Longest Increasing Subsequence: Write an algorithm to find the length of the longest increasing subsequence in an array of integers. The subsequence does not have to be contiguous. What is the time complexity of your solution?
+
+------
+
+Maximum Product Subarray: Write a function to find the contiguous subarray with the maximum product in an array of integers. This problem is an extension of the Kadane's algorithm for maximum subarray sum.
+
+------
+
+Spiral Matrix: Given an integer 'n', generate an 'n x n' spiral matrix. Starting from the top-left corner, your task is to return the elements of the matrix in a spiral order.
+
+------
+
+3Sum: Given an array of integers, find all unique triplets in the array that sum up to a target value. This problem is often referred to as the ' 3Sum ' problem and is a challenging array manipulation problem.
+
+------
+

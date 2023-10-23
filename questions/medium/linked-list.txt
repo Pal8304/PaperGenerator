@@ -1,0 +1,20 @@
+Write a function to remove the nth node from the end of a linked list.
+
+------
+
+Write a function to merge two sorted linked lists.
+
+------
+
+Write a function to remove duplicates from a linked list.
+
+------
+
+Write a function to find the kth node from the end of a linked list.
+
+------
+
+Write a function to find the intersection of two linked lists.
+
+------
+

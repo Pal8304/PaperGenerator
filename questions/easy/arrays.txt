@@ -1,0 +1,20 @@
+What is an array?
+
+------
+
+What are different types of arrays?
+
+------
+
+What is a 2D array?
+
+------
+
+What is a 3D array?
+
+------
+
+What is a jagged array?
+
+------
+
