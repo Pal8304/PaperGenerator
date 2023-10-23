@@ -1,1 +1,1 @@
-gcc -Werror -Wall -Wextra -lm -o main main.c
+gcc -Werror -Wall -Wextra -lm -pedantic -o main src/main.c
