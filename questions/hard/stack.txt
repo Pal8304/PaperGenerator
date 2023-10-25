@@ -1,0 +1,20 @@
+Implement a queue using three stacks.
+
+ඞ
+
+Design a stack that supports the following operations in O(1) time: "push()", "pop()", "top()", "getSecondMin()"
+
+ඞ
+
+Implement a backtracking algorithm to solve the Sudoku problem using a stack.
+
+ඞ
+
+Implement a topological sort of a directed acyclic graph (DAG) using a stack.
+
+ඞ
+
+Find the longest increasing subsequence of an array using a stack.
+
+ඞ
+

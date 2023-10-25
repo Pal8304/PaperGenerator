@@ -1,0 +1,20 @@
+What is a stack?
+
+ඞ
+
+What are some common operations performed on stacks?
+
+ඞ
+
+What are some real-world applications of stacks?
+
+ඞ
+
+What is the difference between a stack and a queue?
+
+ඞ
+
+How can you implement a stack using an array?
+
+ඞ
+

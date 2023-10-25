@@ -1,0 +1,20 @@
+What is a queue?
+
+ඞ
+
+What are some common operations performed on queues?
+
+ඞ
+
+What are some real-world applications of queues?
+
+ඞ
+
+What is the difference between a queue and a stack?
+
+ඞ
+
+How can you implement a queue using an array?
+
+ඞ
+

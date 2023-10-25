@@ -1,0 +1,20 @@
+Implement a stack with a minimum() function that returns the minimum element in the stack in constant time.
+
+ඞ
+
+Implement a queue using two stacks.
+
+ඞ
+
+Sort a stack using recursion.
+
+ඞ
+
+Reverse a string using a stack.
+
+ඞ
+
+Check if an expression is balanced (i.e., all parentheses, braces, and brackets are matched correctly).
+
+ඞ
+

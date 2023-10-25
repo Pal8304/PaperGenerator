@@ -1,0 +1,20 @@
+What is a tree data structure?
+
+ඞ
+
+What are the different types of trees?
+
+ඞ
+
+What are the common operations performed on trees?
+
+ඞ
+
+What are some real-world applications of trees?
+
+ඞ
+
+How can you represent a tree using an adjacency list?
+
+ඞ
+

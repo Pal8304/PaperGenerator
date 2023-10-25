@@ -1,0 +1,20 @@
+Design a queue that supports the following operations in O(1) time: `enqueue()`, `dequeue()`, `front()`, `back()`
+
+ඞ
+
+Implement a concurrent queue using locks and condition variables.
+
+ඞ
+
+Design a queue that supports the following operations in O(1) time on average: `enqueue()`, `dequeue()`, `front()`, `getMedium()`
+
+ඞ
+
+Implement a breadth-first search (BFS) algorithm using a queue.
+
+ඞ
+
+Design a queue that supports the following operations in O(1) time on average: `enqueue()`, `dequeue()`, `front()`, `getKthElement(k)`
+
+ඞ
+

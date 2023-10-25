@@ -1,0 +1,20 @@
+Implement a self-balancing binary search tree, such as an AVL tree or red-black tree.
+
+ඞ
+
+Implement a B-tree or B+ tree.
+
+ඞ
+
+Implement a trie.
+
+ඞ
+
+Find the diameter of a tree.
+
+ඞ
+
+Construct a phylogenetic tree from a DNA sequence alignment.
+
+ඞ
+
