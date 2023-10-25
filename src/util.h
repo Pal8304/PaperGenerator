@@ -12,7 +12,7 @@
 void addQuestion(char *question, char *topic, char *difficulty);
 DynamicArray *getQuestionsDifficulty(char *difficulty);
 char *readFileContents(char *filePath);
-int getTerminalWidth();
+int getTerminalWidth(void);
 void printCentered(char *str);
 void printLeftRight(char *left, char *right, int gap);
 char *trim(char *str);
@@ -109,7 +109,7 @@ DynamicArray *getQuestionsDifficulty(char *difficulty)
  *
  * @return The width of the terminal.
  */
-int getTerminalWidth()
+int getTerminalWidth(void)
 {
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);

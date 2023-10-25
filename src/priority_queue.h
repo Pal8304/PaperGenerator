@@ -148,7 +148,7 @@ void deserializePriorityQueue(PriorityQueue *pq, char *name)
     for (int i = 0; i < pq->size; ++i)
     {
         fprintf(fp, "%d %d", pq->array[i]->index, pq->array[i]->frequency);
-        fprintf(fp, sep);
+        fprintf(fp, "%s", sep);
     }
     fclose(fp);
 }
