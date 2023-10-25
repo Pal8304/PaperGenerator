@@ -1,20 +1,20 @@
 Write a function to reverse a linked list.
 
-------
+ඞ
 
 Write a function to find the middle node of a linked list.
 
-------
+ඞ
 
 Write a function to detect if a linked list has a cycle.
 
-------
+ඞ
 
 Write a function to find the start of a cycle in a linked list.
 
-------
+ඞ
 
 Write a function to find the length of a cycle in a linked list.
 
-------
+ඞ
 

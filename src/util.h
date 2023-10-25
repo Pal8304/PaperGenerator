@@ -3,20 +3,23 @@
 #include <dirent.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
+#define DYNAMIC_ARRAY_IMPLEMENTATION
 #include "dynamic_array.h"
-
-#ifndef UTIL_H
-#define UTIL_H
 
 void addQuestion(char *question, char *topic, char *difficulty);
 DynamicArray *getQuestionsDifficulty(char *difficulty);
 char *readFileContents(char *filePath);
+int getTerminalWidth();
+void printCentered(char *str);
+void printLeftRight(char *left, char *right, int gap);
 char *trim(char *str);
 
-#endif
+#ifdef UTILS_IMPLEMENTATION
 
-const char *QUESTION_SEP = "------";
+const char *QUESTION_SEP = "ඞ";
 
 /**
  * Adds the given question to the given topic and difficulty.
@@ -27,8 +30,8 @@ const char *QUESTION_SEP = "------";
  */
 void addQuestion(char *question, char *topic, char *difficulty)
 {
-    char *filePath = malloc(1000);
-    sprintf(filePath, "%s/%s/%s.txt", "questions", difficulty, topic);
+    char *filePath = NULL;
+    asprintf(&filePath, "%s/%s/%s.txt", "questions", difficulty, topic);
 
     FILE *file = fopen(filePath, "a");
     if (file == NULL)
@@ -52,8 +55,8 @@ void addQuestion(char *question, char *topic, char *difficulty)
  */
 DynamicArray *getQuestionsDifficulty(char *difficulty)
 {
-    char *dirPath = malloc(100);
-    sprintf(dirPath, "%s/%s", "questions", difficulty);
+    char *dirPath = NULL;
+    asprintf(&dirPath, "%s/%s", "questions", difficulty);
 
     DynamicArray *questions = createDynamicArray(2);
 
@@ -64,8 +67,8 @@ DynamicArray *getQuestionsDifficulty(char *difficulty)
     {
         while ((dir = readdir(d)) != NULL)
         {
-            char *filePath = malloc(1000);
-            sprintf(filePath, "%s/%s", dirPath, dir->d_name);
+            char *filePath = NULL;
+            asprintf(&filePath, "%s/%s", dirPath, dir->d_name);
             char *contents = readFileContents(filePath);
             free(filePath);
 
@@ -82,8 +85,8 @@ DynamicArray *getQuestionsDifficulty(char *difficulty)
             {
                 if (strlen(question) > 0)
                 {
-                    printf("INFO: Question: `%s` of file: `%s`\n", question, dir->d_name);
-                    pushDynamicArray(question, questions);
+                    // printf("INFO: Question: `%s` of file: `%s`\n", question, dir->d_name);
+                    pushDynamicArray(createQuestion(question, dir->d_name, difficulty), questions);
                 }
                 question = trim(strtok(NULL, QUESTION_SEP));
             }
@@ -99,6 +102,60 @@ DynamicArray *getQuestionsDifficulty(char *difficulty)
     free(dirPath);
 
     return questions;
+}
+
+/**
+ * Returns the width of the terminal.
+ *
+ * @return The width of the terminal.
+ */
+int getTerminalWidth()
+{
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    return w.ws_col;
+}
+
+/**
+ * Prints the given string centered.
+ *
+ * @param str The string to be printed.
+ */
+void printCentered(char *str)
+{
+    int width = getTerminalWidth();
+    int length = strlen(str);
+    int padding = (width - length) / 2;
+    for (int i = 0; i < padding; i++)
+    {
+        printf(" ");
+    }
+    printf("%s\n", str);
+}
+
+/**
+ * Prints the given left and right strings with the given gap between them.
+ *
+ * @param left The left string.
+ * @param right The right string.
+ * @param gap The gap between the left and right strings.
+ */
+void printLeftRight(char *left, char *right, int gap)
+{
+    int width = getTerminalWidth();
+    int leftLength = strlen(left);
+    int rightLength = strlen(right);
+    int padding = width - leftLength - rightLength - 2 * gap;
+    for (int i = 0; i < gap; i++)
+    {
+        printf(" ");
+    }
+    printf("%s", left);
+    for (int i = 0; i < padding; i++)
+    {
+        printf(" ");
+    }
+    printf("%s\n", right);
 }
 
 /**
@@ -190,3 +247,5 @@ char *trim(char *str)
 
     return str;
 }
+
+#endif

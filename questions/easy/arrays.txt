@@ -1,20 +1,20 @@
 What is an array?
 
-------
+ඞ
 
 What are different types of arrays?
 
-------
+ඞ
 
 What is a 2D array?
 
-------
+ඞ
 
 What is a 3D array?
 
-------
+ඞ
 
 What is a jagged array?
 
-------
+ඞ
 

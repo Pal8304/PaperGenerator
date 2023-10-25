@@ -1,31 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#define UTILS_IMPLEMENTATION
 #include "util.h"
-#include "priorityq.h"
+
+#define PRIORITY_QUEUE_IMPLEMENTATION
+#include "priority_queue.h"
 
 int main(void)
 {
-  // PriorityQueue *pq = createPriorityQueue(100);
-  // Pair test1 = {1, 5};
-  // Pair test2 = {0, 10};
-  // Pair test3 = {3, 1};
-  // insert(pq, test1);
-  // insert(pq, test2);
-  // insert(pq, test3);
-  // for (int i = 0; i < 3; i++)
-  // {
-  //   Pair top = gettop(pq);
-  //   printf("(%d, %d)\n", top.first, top.second);
-  // }
-  // free(pq->array);
-  // free(pq);
+  printCentered("---Welcome to Paper Generator!---");
 
-  DynamicArray *array = getQuestionsDifficulty("easy");
-  printDynamicArray(array);
+  int questionCount;
+  printf("Enter the number of questions for this paper: ");
+  scanf("%d", &questionCount);
 
-  printf("%s\n", getDynamicArray(5, array));
+  int easy, medium, hard;
+  printf("Enter the number of easy, medium and hard questions respectively: ");
+  scanf("%d %d %d", &easy, &medium, &hard);
 
-  freeDynamicArray(array);
+  int total = easy + medium + hard;
+  if (total != questionCount)
+  {
+    printf("ERROR: The sum of easy, medium and hard questions should be equal to the total number of questions.\n");
+    return 1;
+  }
+
+  DynamicArray *easyQuestions = getQuestionsDifficulty("easy");
+  DynamicArray *mediumQuestions = getQuestionsDifficulty("medium");
+  DynamicArray *hardQuestions = getQuestionsDifficulty("hard");
+
+  PriorityQueue *easyPriorityQueue = serializePriorityQueue("easy");
+  PriorityQueue *mediumPriorityQueue = serializePriorityQueue("medium");
+  PriorityQueue *hardPriorityQueue = serializePriorityQueue("hard");
+
+  printDynamicArray(easyQuestions);
+  printf("%d\n", easyQuestions->size);
+
+  freePriorityQueue(easyPriorityQueue);
+  freePriorityQueue(mediumPriorityQueue);
+  freePriorityQueue(hardPriorityQueue);
+
+  freeDynamicArray(easyQuestions);
+  freeDynamicArray(mediumQuestions);
+  freeDynamicArray(hardQuestions);
 
   return 0;
 }
