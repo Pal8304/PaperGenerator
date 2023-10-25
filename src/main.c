@@ -34,8 +34,38 @@ int main(void)
   PriorityQueue *mediumPriorityQueue = serializePriorityQueue("medium");
   PriorityQueue *hardPriorityQueue = serializePriorityQueue("hard");
 
-  printDynamicArray(easyQuestions);
-  printf("%d\n", easyQuestions->size);
+  DynamicArray *questionPaper = createDynamicArray(questionCount);
+  for (int i = 0; i < easy; ++i)
+  {
+    Pair *p = popPriorityQueue(easyPriorityQueue);
+    pushDynamicArray(getDynamicArray(p->index, easyQuestions), questionPaper);
+    p->frequency += 1;
+    insertPriorityQueue(easyPriorityQueue, p);
+  }
+  for (int i = 0; i < medium; ++i)
+  {
+    Pair *p = popPriorityQueue(mediumPriorityQueue);
+    pushDynamicArray(getDynamicArray(p->index, mediumQuestions), questionPaper);
+    p->frequency += 1;
+    insertPriorityQueue(mediumPriorityQueue, p);
+  }
+  for (int i = 0; i < hard; ++i)
+  {
+    Pair *p = popPriorityQueue(hardPriorityQueue);
+    pushDynamicArray(getDynamicArray(p->index, hardQuestions), questionPaper);
+    p->frequency += 1;
+    insertPriorityQueue(hardPriorityQueue, p);
+  }
+
+  for (int i = 0; i < questionPaper->size; ++i)
+  {
+    Question *question = getDynamicArray(i, questionPaper);
+    printLeftRight(question->question, question->difficulty, 0);
+  }
+
+  deserializePriorityQueue(easyPriorityQueue, "easy");
+  deserializePriorityQueue(mediumPriorityQueue, "medium");
+  deserializePriorityQueue(hardPriorityQueue, "hard");
 
   freePriorityQueue(easyPriorityQueue);
   freePriorityQueue(mediumPriorityQueue);

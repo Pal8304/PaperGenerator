@@ -12,7 +12,7 @@ void swap(Pair *a, Pair *b);
 void heapifyPriorityQueue(PriorityQueue *pq, int ind);
 void insertPriorityQueue(PriorityQueue *pq, Pair *data);
 bool isEmpty(PriorityQueue *pq);
-Pair topPriorityQueue(PriorityQueue *pq);
+Pair *popPriorityQueue(PriorityQueue *pq);
 void deserializePriorityQueue(PriorityQueue *pq, char *name);
 PriorityQueue *serializePriorityQueue(char *name);
 void printPriorityQueue(PriorityQueue *pq);
@@ -112,24 +112,26 @@ bool isEmpty(PriorityQueue *pq)
 }
 
 // Get top element and pop operation
-Pair topPriorityQueue(PriorityQueue *pq)
+Pair *popPriorityQueue(PriorityQueue *pq)
 {
     if (pq->size <= 0)
     {
-        printf("Empty\n");
-        Pair empty = {0, 0};
-        return empty;
+        printf("ERROR: Cannot pop from empty priority queue.\n");
+        return NULL;
     }
     if (pq->size == 1)
     {
         pq->size--;
-        return *pq->array[0];
+        Pair *ret = createPair(pq->array[0]->index, pq->array[0]->frequency);
+        free(pq->array[0]);
+        return ret;
     }
-    Pair root = *pq->array[0];
+    Pair *ret = createPair(pq->array[0]->index, pq->array[0]->frequency);
+    free(pq->array[0]);
     pq->array[0] = pq->array[pq->size - 1];
     pq->size--;
     heapifyPriorityQueue(pq, 0);
-    return root;
+    return ret;
 }
 
 const char *sep = "\n";
@@ -159,11 +161,11 @@ PriorityQueue *serializePriorityQueue(char *name)
     fp = fopen(filePath, "r");
     if (!fileExists(filePath))
     {
-        printf("INFO: PQ FILE DOESN'T EXIST\n");
+        // printf("INFO: PQ FILE DOESN'T EXIST\n");
         free(filePath);
         PriorityQueue *pq = createPriorityQueue(75);
         DynamicArray *questions = getQuestionsDifficulty(name);
-        printf("INFO: Creating priority queue of size: %d\n", questions->size);
+        // printf("INFO: Creating priority queue of size: %d\n", questions->size);
         for (int i = 0; i < questions->size; ++i)
         {
             insertPriorityQueue(pq, createPair(i, 0));
@@ -174,11 +176,11 @@ PriorityQueue *serializePriorityQueue(char *name)
     }
     free(filePath);
 
-    printf("INFO: Reading pq file...\n");
+    // printf("INFO: Reading pq file...\n");
     int capacity, size;
     fscanf(fp, "%d", &capacity);
     fscanf(fp, "%d", &size);
-    printf("INFO: PQ capacity read: %d, size read: %d\n", capacity, size);
+    // printf("INFO: PQ capacity read: %d, size read: %d\n", capacity, size);
     PriorityQueue *pq = createPriorityQueue(capacity);
     for (int i = 0; i < size; ++i)
     {
@@ -192,11 +194,11 @@ PriorityQueue *serializePriorityQueue(char *name)
 
 void printPriorityQueue(PriorityQueue *pq)
 {
-    printf("INFO: Size: %d\n", pq->size);
-    printf("INFO: Capacity: %d\n", pq->capacity);
+    // printf("INFO: Size: %d\n", pq->size);
+    // printf("INFO: Capacity: %d\n", pq->capacity);
     for (int i = 0; i < pq->size; ++i)
     {
-        printf("INFO: Pair at index `%d` : `{%d, %d}`\n", i, pq->array[i]->index, pq->array[i]->frequency);
+        // printf("INFO: Pair at index `%d` : `{%d, %d}`\n", i, pq->array[i]->index, pq->array[i]->frequency);
     }
 }
 

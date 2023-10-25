@@ -75,7 +75,7 @@ DynamicArray *getQuestionsDifficulty(char *difficulty)
             int length = strlen(contents);
             if (length == 0 || strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0)
             {
-                printf("INFO: Skipping empty file: `%s`\n", dir->d_name);
+                // printf("INFO: Skipping empty file: `%s`\n", dir->d_name);
                 free(contents);
                 continue;
             }
@@ -166,7 +166,7 @@ void printLeftRight(char *left, char *right, int gap)
  */
 char *readFileContents(char *filePath)
 {
-    printf("INFO: Reading file: `%s`\n", filePath);
+    // printf("INFO: Reading file: `%s`\n", filePath);
     FILE *file = fopen(filePath, "r");
     if (file == NULL)
     {
