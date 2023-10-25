@@ -13,3 +13,8 @@ Design and develop a question paper formation tool using an efficient data struc
 ## Solution proposed by "LashPa"
 
 - Usage of priority queue to store the number of times the questions have appeared in previous papers.
+
+## Implementation
+
+- Libraries used:
+    - PDFGen: https://github.com/AndreRenaud/PDFGen/
