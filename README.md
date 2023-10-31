@@ -1,6 +1,6 @@
 # Paper Generator
 
-My and Palash's submission for the Data Structures assignment of Semester 3.
+My and Nirlep's submission for the Data Structures assignment of Semester 3.
 
 ## Problem Statement
 
