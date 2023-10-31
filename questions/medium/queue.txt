@@ -14,7 +14,7 @@ Implement a sliding window maximum algorithm using a queue.
 
 ඞ
 
-Design a queue that supports the following operations in O(1) time on average: `enqueue()`, `dequeue()`, `front()`, `getRandom()`
+Implement circular queue.
 
 ඞ
 
