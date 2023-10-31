@@ -7,6 +7,15 @@ typedef struct Question
     char *difficulty;
 } Question;
 
+/**
+ * Creates a question with the given data.
+ *
+ * @param q The question.
+ * @param topic The topic of the question.
+ * @param difficulty The difficulty of the question.
+ *
+ * @return The pointer to the question.
+ */
 Question *
 createQuestion(char *q, char *topic, char *difficulty)
 {
@@ -17,6 +26,11 @@ createQuestion(char *q, char *topic, char *difficulty)
     return question;
 }
 
+/**
+ * Frees the memory allocated to the question.
+ *
+ * @param question The pointer to the question.
+ */
 void freeQuestion(Question *question)
 {
     free(question->question);

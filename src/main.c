@@ -44,9 +44,9 @@ int main(void)
   DynamicArray *mediumQuestions = getQuestionsDifficulty("medium");
   DynamicArray *hardQuestions = getQuestionsDifficulty("hard");
 
-  PriorityQueue *easyPriorityQueue = serializePriorityQueue("easy");
-  PriorityQueue *mediumPriorityQueue = serializePriorityQueue("medium");
-  PriorityQueue *hardPriorityQueue = serializePriorityQueue("hard");
+  PriorityQueue *easyPriorityQueue = deserializePriorityQueue("easy");
+  PriorityQueue *mediumPriorityQueue = deserializePriorityQueue("medium");
+  PriorityQueue *hardPriorityQueue = deserializePriorityQueue("hard");
 
   DynamicArray *questionPaper = createDynamicArray(questionCount);
   addQuestionsToPaper(easyPriorityQueue, easyQuestions, questionPaper, easy);
@@ -117,7 +117,7 @@ int main(void)
 
   float temp;
   float gap = 230;
-  float offset = 20;
+  float offset = 40;
   int index = 0;
   for (int i = 0; i < questionPaper->size; ++i)
   {
@@ -154,30 +154,20 @@ int main(void)
       gap += 12 + temp;
     }
   }
-  // for (int i = 0; i < questionPaper->size; ++i)
-  // {
-  //   Question *question = getDynamicArray(i, questionPaper);
-  //   char *questionText = NULL;
-  //   asprintf(&questionText, "%d. %s", i + 1, question->question);
-  //   int y = PDF_A4_HEIGHT - gap;
-  //   pdf_add_text_wrap(pdf, page, questionText, 12, 50, y, 0, PDF_BLACK, PDF_A4_WIDTH - 150, PDF_ALIGN_LEFT, &temp);
-  //   pdf_add_text(pdf, page, question->difficulty, 12, PDF_A4_WIDTH - 50, y, PDF_BLACK);
-  //   gap += 10 + temp;
-  //   temp = 0;
-  //   free(questionText);
-  // }
 
   char *fileName = NULL;
   asprintf(&fileName, "papers/%s.pdf", pdf_title);
   pdf_save(pdf, fileName);
-  pdf_destroy(pdf);
 
+  printf("INFO: PDF FILE GENERATED: %s\n", fileName);
+
+  pdf_destroy(pdf);
   free(fileName);
   free(pdf_title);
 
-  deserializePriorityQueue(easyPriorityQueue, "easy");
-  deserializePriorityQueue(mediumPriorityQueue, "medium");
-  deserializePriorityQueue(hardPriorityQueue, "hard");
+  serializePriorityQueue(easyPriorityQueue, "easy");
+  serializePriorityQueue(mediumPriorityQueue, "medium");
+  serializePriorityQueue(hardPriorityQueue, "hard");
 
   freePriorityQueue(easyPriorityQueue);
   freePriorityQueue(mediumPriorityQueue);
@@ -186,6 +176,7 @@ int main(void)
   freeDynamicArray(easyQuestions);
   freeDynamicArray(mediumQuestions);
   freeDynamicArray(hardQuestions);
+  freeDynamicArray(questionPaper);
 
   return 0;
 }

@@ -49,45 +49,53 @@ void addQuestion(char *question, char *topic, char *difficulty)
  */
 DynamicArray *getQuestionsDifficulty(char *difficulty)
 {
+    // Construct the path to the directory containing the questions
+    // and create a dynamic array to store the questions
     char *dirPath = NULL;
     asprintf(&dirPath, "%s/%s", "questions", difficulty);
-
     DynamicArray *questions = createDynamicArray(2);
 
+    // Open the directory
     DIR *d;
     struct dirent *dir;
     d = opendir(dirPath);
     if (d)
     {
+        // For each file in the directory
         while ((dir = readdir(d)) != NULL)
         {
+            // Construct the path to the file and read its contents
             char *filePath = NULL;
             asprintf(&filePath, "%s/%s", dirPath, dir->d_name);
             char *contents = readFileContents(filePath);
             free(filePath);
 
+            // If the file is empty, or is the current or parent directory,
+            // skip it
             int length = strlen(contents);
             if (length == 0 || strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0)
             {
-                // printf("INFO: Skipping empty file: `%s`\n", dir->d_name);
                 free(contents);
                 continue;
             }
 
+            // For each question in the file
             char *question = trim(strtok(contents, QUESTION_SEP));
             while (question != NULL)
             {
+                // If the question is not empty, push it to the dynamic array
                 if (strlen(question) > 0)
                 {
-                    // printf("INFO: Question: `%s` of file: `%s`\n", question, dir->d_name);
                     pushDynamicArray(createQuestion(question, dir->d_name, difficulty), questions);
                 }
+                // Get the next question
                 question = trim(strtok(NULL, QUESTION_SEP));
             }
         }
     }
     else
     {
+        // If the directory could not be opened, print an error and exit
         printf("ERROR: Unable to open directory: `%s`\n", dirPath);
         free(dirPath);
         exit(1);
@@ -160,7 +168,6 @@ void printLeftRight(char *left, char *right, int gap)
  */
 char *readFileContents(char *filePath)
 {
-    // printf("INFO: Reading file: `%s`\n", filePath);
     FILE *file = fopen(filePath, "r");
     if (file == NULL)
     {
@@ -181,6 +188,14 @@ char *readFileContents(char *filePath)
     return buffer;
 }
 
+/**
+ * Adds the given number of questions from the given questions to the given question paper.
+ *
+ * @param pq The priority queue of the questions.
+ * @param questions The questions.
+ * @param question_paper The question paper.
+ * @param count The number of questions to be added.
+ */
 void addQuestionsToPaper(PriorityQueue *pq, DynamicArray *questions, DynamicArray *question_paper, int count)
 {
     Pair *removed[count];
