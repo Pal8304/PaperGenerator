@@ -85,7 +85,7 @@ int main(void)
       12, 0, PDF_A4_HEIGHT - 66, 0, PDF_BLACK, PDF_A4_WIDTH,
       PDF_ALIGN_CENTER, NULL);
   pdf_add_text_wrap(
-      pdf, page, "2CS301 Data Structures and Algorithms",
+      pdf, page, "2CS501 Data Structures",
       12, 0, PDF_A4_HEIGHT - 78, 0, PDF_BLACK, PDF_A4_WIDTH,
       PDF_ALIGN_CENTER, NULL);
 
