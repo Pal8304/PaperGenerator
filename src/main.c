@@ -10,6 +10,10 @@
 #include "../external_libraries/pdfgen.h"
 #include "../external_libraries/pdfgen.c"
 
+const int EASY_MARKS = 5;
+const int MEDIUM_MARKS = 10;
+const int HARD_MARKS = 20;
+
 int main(void)
 {
   printCentered("---Welcome to Paper Generator!---");
@@ -99,6 +103,13 @@ int main(void)
       12, PDF_A4_WIDTH - 205, PDF_A4_HEIGHT - 100, 0, PDF_BLACK, 100,
       PDF_ALIGN_LEFT, NULL);
   pdf_add_rectangle(pdf, page, PDF_A4_WIDTH - 110, PDF_A4_HEIGHT - 110, 70, 20, 1, PDF_BLACK);
+
+  char *maxMarksString = NULL;
+  asprintf(&maxMarksString, "Max marks: %d", EASY_MARKS * easy + MEDIUM_MARKS * medium + HARD_MARKS * hard);
+  pdf_add_text_wrap(
+      pdf, page, maxMarksString, 12, 0, PDF_A4_HEIGHT - 125, 0,
+      PDF_BLACK, PDF_A4_WIDTH - 45,
+      PDF_ALIGN_RIGHT, NULL);
 
   pdf_add_text_wrap(
       pdf, page, "Instructions:",
