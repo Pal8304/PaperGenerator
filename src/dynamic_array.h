@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Question Question;
 Question *createQuestion(char *q, char *topic, char *difficulty);

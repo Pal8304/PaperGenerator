@@ -1,8 +1,8 @@
+#include <ctype.h>
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <dirent.h>
 #include <string.h>
-#include <ctype.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -17,7 +17,8 @@ int getTerminalWidth(void);
 void printCentered(char *str);
 void printLeftRight(char *left, char *right, int gap);
 char *readFileContents(char *filePath);
-void addQuestionsToPaper(PriorityQueue *pq, DynamicArray *questions, DynamicArray *question_paper, int count);
+void addQuestionsToPaper(PriorityQueue *pq, DynamicArray *questions,
+                         DynamicArray *question_paper, int count);
 char *trim(char *str);
 
 #ifdef UTILS_IMPLEMENTATION
